@@ -14,12 +14,11 @@ class DetailsViewController: UIViewController, UITableViewDataSource, UITableVie
 
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var name: UILabel!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var pinButton: UIButton!
     
     var userDetails: [String] = []
-    let detailsTag = ["Followers", "Following", "Uploads"]
+    let detailsTag = ["Name", "Followers", "Following", "Uploads"]
     var userId: String?
     var isPinned: Bool?
     let viewModel = TikTokViewModel()
@@ -44,16 +43,19 @@ class DetailsViewController: UIViewController, UITableViewDataSource, UITableVie
             let url = URL(string: user.thumbnail)
             self.thumbnail.kf.setImage(with: url)
             
-            self.username.text = user.id
-            self.name.text = user.name
+            self.username.text = "@" + user.id
             
-            self.userDetails = [user.followerCount, user.followingCount, user.mediaCount]
+            self.userDetails = [user.name, user.followerCount, user.followingCount, user.mediaCount]
             self.table.reloadData()
         }.catch { error in
             print("Error in getting TikTok user details")
         }.finally {
             SwiftSpinner.hide()
         }
+    }
+    
+    @IBAction func backButton(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

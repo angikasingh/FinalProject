@@ -25,6 +25,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         searchBar.delegate = self
     }
     
+    @IBAction func backButton(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return searchResults.count
