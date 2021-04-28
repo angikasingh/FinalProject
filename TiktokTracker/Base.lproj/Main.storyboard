@@ -24,9 +24,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Search"/>
                                 <connections>
-                                    <segue destination="JEd-iJ-3ay" kind="popoverPresentation" popoverAnchorView="47J-1L-Flg" id="fvZ-EH-hcJ">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
+                                    <segue destination="JEd-iJ-3ay" kind="presentation" id="fvZ-EH-hcJ"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R6q-87-he8">
@@ -57,7 +55,7 @@
                     </view>
                     <connections>
                         <outlet property="table" destination="R6q-87-he8" id="MxH-cj-IIc"/>
-                        <segue destination="thv-MH-mD8" kind="show" identifier="showPinnedDetails" id="oGF-iY-Q0n"/>
+                        <segue destination="thv-MH-mD8" kind="presentation" identifier="showPinnedDetails" modalPresentationStyle="automatic" id="oGF-iY-Q0n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -147,7 +145,7 @@
                     <connections>
                         <outlet property="searchBar" destination="y1X-oH-YcS" id="6Dm-Th-QLJ"/>
                         <outlet property="table" destination="0cR-1e-CUo" id="vlK-UW-xcg"/>
-                        <segue destination="thv-MH-mD8" kind="show" identifier="showSearchDetails" id="2e9-m6-YTb"/>
+                        <segue destination="thv-MH-mD8" kind="presentation" identifier="showSearchDetails" modalPresentationStyle="automatic" id="2e9-m6-YTb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oEB-LJ-Sma" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -156,7 +154,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="2e9-m6-YTb"/>
+        <segue reference="oGF-iY-Q0n"/>
     </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="AccentColor">
