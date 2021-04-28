@@ -20,7 +20,7 @@ class DetailsViewController: UIViewController, UITableViewDataSource, UITableVie
     var userDetails: [String] = []
     let detailsTag = ["Name", "Followers", "Following", "Uploads"]
     var userId: String?
-    var isPinned: Bool?
+    var isPinned: Bool = false
     let viewModel = TikTokViewModel()
     let db = Firestore.firestore()
     
@@ -29,16 +29,18 @@ class DetailsViewController: UIViewController, UITableViewDataSource, UITableVie
         // Do any additional setup after loading the view.
         table.delegate = self
         table.dataSource = self
-        
-        if (isPinned!) {
-            pinButton.setTitle("Unpin user from home", for: .normal)
-        } else {
-            pinButton.setTitle("Save user to Home", for: .normal)
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         SwiftSpinner.show("Fetching user details")
+        viewModel.isUserPinned(userId!).done { pinned in
+            self.isPinned = pinned
+            if (self.isPinned) {
+                self.pinButton.setTitle("Unpin user from home", for: .normal)
+            } else {
+                self.pinButton.setTitle("Save user to Home", for: .normal)
+            }
+        }
         viewModel.getUserDetils(getDetailsUrl(userId!)).done { user in
             let url = URL(string: user.thumbnail)
             self.thumbnail.kf.setImage(with: url)
@@ -72,7 +74,7 @@ class DetailsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func pinUser(_ sender: Any) {
-        if (isPinned!) {
+        if (isPinned) {
             isPinned = false
             pinButton.setTitle("Save user to Home", for: .normal)
             viewModel.unpinUser(userId!)
